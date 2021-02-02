@@ -172,8 +172,6 @@ class TrelloMapperTest {
         TrelloCardDto trelloCardDto = new TrelloCardDto("Test Name","Test Description","Test Pos","Test ListId");
         TrelloCard testData = new TrelloCard("Test Name", "Test Description", "Test Pos","Test ListId");
 
-        System.out.println(trelloCardDto + "***\n\n\n***");
-        System.out.println(testData);
         //When
         TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
 
