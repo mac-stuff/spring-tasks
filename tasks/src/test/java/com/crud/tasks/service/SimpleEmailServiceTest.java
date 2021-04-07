@@ -44,44 +44,4 @@ class SimpleEmailServiceTest {
         //Then
         verify(javaMailSender, times(1)).send(mailMessage);
     }
-
-    @Test
-    public void shouldCheckIfCcIsAddedCorrectly() {
-        //Given
-        Mail mail = Mail.builder()
-                .mailTo("test@test.com")
-                .subject("test")
-                .message("Lorem ipsum ...")
-                .toCc("anna@test.com")
-                .build();
-
-        // Then
-        assertEquals("anna@test.com", mail.getToCc());
-    }
-
-    @Test
-    public void shouldSendEmailWithCC() {
-        //Given
-        Mail mail = Mail.builder()
-                .mailTo("test@test.com")
-                .subject("test")
-                .message("Lorem ipsum ...")
-                .toCc("anna@test.com")
-                .build();
-
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
-
-        if (Optional.ofNullable(mail.getToCc()).isPresent()) {
-            mailMessage.setCc(mail.getToCc());
-        }
-
-        //When
-        simpleEmailService.send(mail);
-
-        //Then
-        verify(javaMailSender, times(1)).send(mailMessage);
-    }
 }
