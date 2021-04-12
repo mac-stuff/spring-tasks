@@ -39,4 +39,15 @@ public class MailCreatorService {
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
+
+    public String buildSumOfTasksEmail(int sumOfTasks) {
+
+        Context context = new Context();
+        context.setVariable("tasks_url", "http://localhost:8888/crud");
+        context.setVariable("button", "Visit website");
+        context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("company_details", adminConfig.getAdminName());
+        context.setVariable("sum_of_tasks_available", sumOfTasks);
+        return templateEngine.process("mail/sum-of-tasks", context);
+    }
 }
